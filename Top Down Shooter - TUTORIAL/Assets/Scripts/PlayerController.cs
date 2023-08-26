@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
     #region Variables
     [SerializeField] float moveSpeed = 5.0f;
 
+    public HealthBar playerHealthBar;
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
     private Rigidbody2D playerRb;
 
     private Vector2 mousePosition;
@@ -18,6 +23,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        
+        playerHealthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
@@ -49,5 +57,19 @@ public class PlayerController : MonoBehaviour
         // Rotates player to where mouse is pointed
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         playerRb.rotation = aimAngle;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Melee Enemy"))
+        {
+            TakeDamage(20);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        playerHealthBar.UpdateHealth(currentHealth);
     }
 }
