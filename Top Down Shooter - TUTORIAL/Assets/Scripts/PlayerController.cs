@@ -20,11 +20,14 @@ public class PlayerController : MonoBehaviour
     public Weapon weapon;
     #endregion Variables
 
-    private void Start()
+    private void Awake()
     {
         playerRb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        
+    }
+
+    private void Start()
+    {   
         playerHealthBar.SetMaxHealth(maxHealth);
     }
 

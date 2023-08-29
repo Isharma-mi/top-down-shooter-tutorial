@@ -10,6 +10,9 @@ public class MeleeEnemy : MonoBehaviour
 
     private GameObject player;
 
+    [SerializeField] int maxHealth = 60;
+    [SerializeField] int currentHealth;
+
     private Rigidbody2D enemyRb;
 
     private Vector2 moveDir;
@@ -20,11 +23,13 @@ public class MeleeEnemy : MonoBehaviour
     {
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+        currentHealth = maxHealth;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -47,5 +52,23 @@ public class MeleeEnemy : MonoBehaviour
         {
             enemyRb.velocity = new Vector2(moveDir.x, moveDir.y) * moveSpeed;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Take damage when hit by bullet
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            TakeDamage(20);
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
     }
 }
