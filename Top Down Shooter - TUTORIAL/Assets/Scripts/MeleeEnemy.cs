@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MeleeEnemy : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] float moveSpeed = 3.5f;
 
     private GameObject player;
+
+    public HealthBar healthBar;
 
     [SerializeField] int maxHealth = 60;
     [SerializeField] int currentHealth;
@@ -29,7 +32,8 @@ public class MeleeEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        healthBar.transform.position = transform.position;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -70,5 +74,6 @@ public class MeleeEnemy : MonoBehaviour
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.UpdateHealth(currentHealth);
     }
 }
