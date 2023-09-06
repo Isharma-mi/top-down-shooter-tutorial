@@ -9,6 +9,7 @@ public class MeleeEnemy : MonoBehaviour
     #region Variables
     [SerializeField] float moveSpeed = 3.5f;
 
+    public GameObject meleeEnemyContainer;
     private GameObject player;
 
     public HealthBar healthBar;
@@ -19,6 +20,8 @@ public class MeleeEnemy : MonoBehaviour
     private Rigidbody2D enemyRb;
 
     private Vector2 moveDir;
+
+    private Vector3 healthBarPositionOffset = new Vector3(0,0.65f,0);
     #endregion Variables
 
     // Get rb component and find player
@@ -32,7 +35,7 @@ public class MeleeEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.transform.position = transform.position;
+        healthBar.transform.position = transform.position + healthBarPositionOffset;
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -46,8 +49,10 @@ public class MeleeEnemy : MonoBehaviour
             float rotationAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             enemyRb.rotation = rotationAngle;
             moveDir = direction;
-            
         }
+        // Keeps health bar slightly above object and rotation consistent
+        healthBar.transform.position = transform.position + healthBarPositionOffset;
+        healthBar.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void FixedUpdate()
@@ -64,9 +69,10 @@ public class MeleeEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage(20);
+            // Destory melee enemy and related UI by destroying parent
             if (currentHealth <= 0)
             {
-                Destroy(gameObject);
+                Destroy(meleeEnemyContainer);
             }
         }
     }
