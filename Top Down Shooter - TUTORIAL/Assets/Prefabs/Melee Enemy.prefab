@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671731067779138965}
   m_Layer: 0
-  m_Name: Melee Enemy Container
+  m_Name: Melee Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,7 @@ Transform:
   - {fileID: 7356836075185835779}
   - {fileID: 5150963232983518968}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7814037148731531664
 GameObject:
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 641007109834717100}
   - component: {fileID: 1615508923089123075}
   m_Layer: 0
-  m_Name: Melee Enemy
+  m_Name: Melee Enemy Sprite
   m_TagString: Melee Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
