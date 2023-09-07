@@ -246,7 +246,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1270601622
+--- !u!1001 &1096439066
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -477,6 +477,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6abe83cbb4279341b59693340ad0436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBackFromRight: 0
+  knockBackForce: 5
+  knockBackCounter: 0
+  knockBackTotalTime: 0.25
   moveSpeed: 5
   playerHealthBar: {fileID: 5435859931713911657}
   maxHealth: 100

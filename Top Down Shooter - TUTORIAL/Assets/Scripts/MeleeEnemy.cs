@@ -50,6 +50,7 @@ public class MeleeEnemy : MonoBehaviour
             enemyRb.rotation = rotationAngle;
             moveDir = direction;
         }
+
         // Keeps health bar slightly above object and rotation consistent
         healthBar.transform.position = transform.position + healthBarPositionOffset;
         healthBar.transform.rotation = Quaternion.Euler(0, 0, 0);
